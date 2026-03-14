@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:Arial;
+background:black;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* Stars background */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+h1{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.message{
+opacity:0;
+transform:translateY(30px);
+transition:1s;
+max-width:320px;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:20px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+.balloon{
+position:absolute;
+bottom:-100px;
+font-size:28px;
+animation: float 8s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎁 A Birthday Surprise 🎁</h1>
+
+<button onclick="openGift()">Open Your Gift</button>
+
+<p id="msg" class="message">
+Happy Birthday! 🎂  
+May your day be filled with laughter, joy and beautiful memories.  
+You are truly special and deserve the best today and always. 💖
+</p>
+
+<script>
+
+/* create stars */
+
+for(let i=0;i<120;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+star.style.animationDuration=1+Math.random()*2+"s";
+document.body.appendChild(star);
+}
+
+/* gift button */
+
+function openGift(){
+
+document.getElementById("msg").classList.add("show");
+
+for(let i=0;i<20;i++){
+createBalloon();
+}
+
+alert("🎉 Surprise! Happy Birthday!");
+}
+
+/* balloons */
+
+function createBalloon(){
+
+let balloon=document.createElement("div");
+balloon.className="balloon";
+balloon.innerHTML="🎈";
+
+balloon.style.left=Math.random()*100+"vw";
+balloon.style.animationDuration=5+Math.random()*5+"s";
+
+document.body.appendChild(balloon);
+
+setTimeout(()=>{
+balloon.remove();
+},8000);
+
+}
+
+</script>
+
+</body>
+</html>
